@@ -1,0 +1,31 @@
+{
+  "name": "@rweda/cloud-machine-testing",
+  "version": "0.0.0",
+  "description": "Generic infrastructure for testing scripted configuration for cloud machines.",
+  "main": "CloudMachineTest.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "docs": "jsdoc -c jsdoc.json",
+    "lint": "eslint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rweda/cloud-machine-testing.git"
+  },
+  "author": "Redwood EDA (http://redwoodeda.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rweda/cloud-machine-testing/issues"
+  },
+  "homepage": "https://github.com/rweda/cloud-machine-testing#readme",
+  "dependencies": {
+    "child-process-promise": "^2.2.1",
+    "promise.delay": "0.0.1"
+  },
+  "devDependencies": {
+    "@codelenny/eslint-rules": "^0.1.0",
+    "docdash": "^0.4.0",
+    "eslint": "^3.19.0",
+    "jsdoc": "^3.4.3"
+  }
+}
