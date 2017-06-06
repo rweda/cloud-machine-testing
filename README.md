@@ -4,6 +4,12 @@ Generic infrastructure for testing scripted configuration for cloud machines.
 
 ## Example
 
+See the [online documentation](https://rweda.github.io/cloud-machine-testing/) for the full API, including:
+
+- Changing [`TestMachine`][]/[`GCETestMachine`][] to specify how new cloud machines can be created
+- Specify custom setup/teardown actions in [`CloudMachineTest`][]
+- Full API for the [`FormatTestOutput`][] testing framework
+
 ```js
 const chai = require("chai");
 const should = chai.should();
@@ -62,3 +68,8 @@ class MyMachineTest extends CloudMachineTest {
 const tester = new MyMachineTest();
 tester.test();
 ```
+
+[`TestMachine`]: https://rweda.github.io/cloud-machine-testing/TestMachine.html
+[`GCETestMachine`]: https://rweda.github.io/cloud-machine-testing/GCETestMachine.html
+[`CloudMachineTest`]: https://rweda.github.io/cloud-machine-testing/CloudMachineTest.html
+[`FormatTestOutput`]: https://rweda.github.io/cloud-machine-testing/FormatTestOutput.html
