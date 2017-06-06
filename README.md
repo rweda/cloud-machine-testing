@@ -1,5 +1,7 @@
 # Cloud Machine Testing
 
+[![NPM Version][NPM_BADGE]](https://www.npmjs.com/package/@rweda/cloud-machine-testing)
+
 Generic infrastructure for testing scripted configuration for cloud machines.
 
 ## Example
@@ -68,6 +70,8 @@ class MyMachineTest extends CloudMachineTest {
 const tester = new MyMachineTest();
 tester.test();
 ```
+
+[NPM_BADGE]: https://img.shields.io/npm/v/@rweda/cloud-machine-testing.svg
 
 [`TestMachine`]: https://rweda.github.io/cloud-machine-testing/TestMachine.html
 [`GCETestMachine`]: https://rweda.github.io/cloud-machine-testing/GCETestMachine.html
