@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>TestError.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Bypass.html">Bypass</a></li><li><a href="CloudMachineTest.html">CloudMachineTest</a><ul class='methods'><li data-type='method'><a href="CloudMachineTest.html#automatedTests">automatedTests</a></li><li data-type='method'><a href="CloudMachineTest.html#cleanup">cleanup</a></li><li data-type='method'><a href="CloudMachineTest.html#createInstance">createInstance</a></li><li data-type='method'><a href="CloudMachineTest.html#destroyInstance">destroyInstance</a></li><li data-type='method'><a href="CloudMachineTest.html#ensureCredentials">ensureCredentials</a></li><li data-type='method'><a href="CloudMachineTest.html#manualSSH">manualSSH</a></li><li data-type='method'><a href="CloudMachineTest.html#manualSteps">manualSteps</a></li><li data-type='method'><a href="CloudMachineTest.html#prepareEnvironment">prepareEnvironment</a></li><li data-type='method'><a href="CloudMachineTest.html#preventRunawayServers">preventRunawayServers</a></li><li data-type='method'><a href="CloudMachineTest.html#runTests">runTests</a></li><li data-type='method'><a href="CloudMachineTest.html#setup">setup</a></li><li data-type='method'><a href="CloudMachineTest.html#test">test</a></li></ul></li><li><a href="FormatTestOutput.html">FormatTestOutput</a><ul class='methods'><li data-type='method'><a href="FormatTestOutput.html#_it">_it</a></li><li data-type='method'><a href="FormatTestOutput.html#allowAssertion">allowAssertion</a></li><li data-type='method'><a href="FormatTestOutput.html#indent">indent</a></li><li data-type='method'><a href="FormatTestOutput.html#indentLines">indentLines</a></li><li data-type='method'><a href="FormatTestOutput.html#it">it</a></li><li data-type='method'><a href="FormatTestOutput.html#resumeBypass">resumeBypass</a></li><li data-type='method'><a href="FormatTestOutput.html#section">section</a></li><li data-type='method'><a href="FormatTestOutput.html#startBypass">startBypass</a></li></ul></li><li><a href="GCETestMachine.html">GCETestMachine</a><ul class='methods'><li data-type='method'><a href="GCETestMachine.html#createInstance">createInstance</a></li><li data-type='method'><a href="GCETestMachine.html#destroyInstance">destroyInstance</a></li><li data-type='method'><a href="GCETestMachine.html#getInstances">getInstances</a></li><li data-type='method'><a href="GCETestMachine.html#salt">salt</a></li><li data-type='method'><a href="GCETestMachine.html#ssh">ssh</a></li></ul></li><li><a href="IO.html">IO</a><ul class='methods'><li data-type='method'><a href="IO.html#bell">bell</a></li><li data-type='method'><a href="IO.html#formatYesNo">formatYesNo</a></li><li data-type='method'><a href="IO.html#status">status</a></li><li data-type='method'><a href="IO.html#yesNo">yesNo</a></li></ul></li><li><a href="TestError.html">TestError</a></li><li><a href="TestMachine.html">TestMachine</a><ul class='methods'><li data-type='method'><a href="TestMachine.html#createInstance">createInstance</a></li><li data-type='method'><a href="TestMachine.html#destroyInstance">destroyInstance</a></li><li data-type='method'><a href="TestMachine.html#ensureServiceStarted">ensureServiceStarted</a></li><li data-type='method'><a href="TestMachine.html#ensureStarted">ensureStarted</a></li><li data-type='method'><a href="TestMachine.html#getInstances">getInstances</a></li><li data-type='method'><a href="TestMachine.html#ssh">ssh</a></li></ul></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">TestError.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * A class to represent a failure while testing.  Takes in an `exitCode` to specify what the program should exit with.
+*/
+class TestError extends Error {
+
+  /**
+   * @param {String} msg the message to give to the user to describe this failure.
+   * @param {Number} [exitCode] the code to exit the process with.  Defaults to `1`.
+  */
+  constructor(msg, exitCode) {
+    super(msg);
+    this.message = msg;
+    this.exitCode = exitCode || 1;
+    this.name = "TestError";
+  }
+
+}
+
+module.exports = TestError;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Tue Jun 06 2017 17:00:17 GMT+0000 (UTC) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

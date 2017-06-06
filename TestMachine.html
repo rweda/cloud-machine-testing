@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>TestMachine - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Bypass.html">Bypass</a></li><li><a href="CloudMachineTest.html">CloudMachineTest</a><ul class='methods'><li data-type='method'><a href="CloudMachineTest.html#automatedTests">automatedTests</a></li><li data-type='method'><a href="CloudMachineTest.html#cleanup">cleanup</a></li><li data-type='method'><a href="CloudMachineTest.html#createInstance">createInstance</a></li><li data-type='method'><a href="CloudMachineTest.html#destroyInstance">destroyInstance</a></li><li data-type='method'><a href="CloudMachineTest.html#ensureCredentials">ensureCredentials</a></li><li data-type='method'><a href="CloudMachineTest.html#manualSSH">manualSSH</a></li><li data-type='method'><a href="CloudMachineTest.html#manualSteps">manualSteps</a></li><li data-type='method'><a href="CloudMachineTest.html#prepareEnvironment">prepareEnvironment</a></li><li data-type='method'><a href="CloudMachineTest.html#preventRunawayServers">preventRunawayServers</a></li><li data-type='method'><a href="CloudMachineTest.html#runTests">runTests</a></li><li data-type='method'><a href="CloudMachineTest.html#setup">setup</a></li><li data-type='method'><a href="CloudMachineTest.html#test">test</a></li></ul></li><li><a href="FormatTestOutput.html">FormatTestOutput</a><ul class='methods'><li data-type='method'><a href="FormatTestOutput.html#_it">_it</a></li><li data-type='method'><a href="FormatTestOutput.html#allowAssertion">allowAssertion</a></li><li data-type='method'><a href="FormatTestOutput.html#indent">indent</a></li><li data-type='method'><a href="FormatTestOutput.html#indentLines">indentLines</a></li><li data-type='method'><a href="FormatTestOutput.html#it">it</a></li><li data-type='method'><a href="FormatTestOutput.html#resumeBypass">resumeBypass</a></li><li data-type='method'><a href="FormatTestOutput.html#section">section</a></li><li data-type='method'><a href="FormatTestOutput.html#startBypass">startBypass</a></li></ul></li><li><a href="GCETestMachine.html">GCETestMachine</a><ul class='methods'><li data-type='method'><a href="GCETestMachine.html#createInstance">createInstance</a></li><li data-type='method'><a href="GCETestMachine.html#destroyInstance">destroyInstance</a></li><li data-type='method'><a href="GCETestMachine.html#getInstances">getInstances</a></li><li data-type='method'><a href="GCETestMachine.html#salt">salt</a></li><li data-type='method'><a href="GCETestMachine.html#ssh">ssh</a></li></ul></li><li><a href="IO.html">IO</a><ul class='methods'><li data-type='method'><a href="IO.html#bell">bell</a></li><li data-type='method'><a href="IO.html#formatYesNo">formatYesNo</a></li><li data-type='method'><a href="IO.html#status">status</a></li><li data-type='method'><a href="IO.html#yesNo">yesNo</a></li></ul></li><li><a href="TestError.html">TestError</a></li><li><a href="TestMachine.html">TestMachine</a><ul class='methods'><li data-type='method'><a href="TestMachine.html#createInstance">createInstance</a></li><li data-type='method'><a href="TestMachine.html#destroyInstance">destroyInstance</a></li><li data-type='method'><a href="TestMachine.html#ensureServiceStarted">ensureServiceStarted</a></li><li data-type='method'><a href="TestMachine.html#ensureStarted">ensureStarted</a></li><li data-type='method'><a href="TestMachine.html#getInstances">getInstances</a></li><li data-type='method'><a href="TestMachine.html#ssh">ssh</a></li></ul></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">TestMachine</h1>
+    
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>
+        TestMachine
+        </h2>
+        
+            <div class="class-description"><p>Abstract class that creates machines, runs tests on created machines, then destroys the machines.</p></div>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+
+    
+    <h2>Constructor</h2>
+    
+
+    <h4 class="name" id="TestMachine"><span class="type-signature"></span>new TestMachine<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="TestMachine.js.html">TestMachine.js</a>, <a href="TestMachine.js.html#line7">line 7</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id="createInstance"><span class="type-signature">(abstract) </span>createInstance<span class="signature">()</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="TestMachine.js.html">TestMachine.js</a>, <a href="TestMachine.js.html#line28">line 28</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Creates a new machine for testing.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>resolves when the machine has been created.</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="destroyInstance"><span class="type-signature">(abstract) </span>destroyInstance<span class="signature">()</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="TestMachine.js.html">TestMachine.js</a>, <a href="TestMachine.js.html#line37">line 37</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Destroys the machine used for testing.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>resolves when the machine has been destroyed.</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="ensureServiceStarted"><span class="type-signature"></span>ensureServiceStarted<span class="signature">(service, timeout, started<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="TestMachine.js.html">TestMachine.js</a>, <a href="TestMachine.js.html#line80">line 80</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Ensure that a <code>systemd</code> service is running.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>service</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>the name of the <code>systemd</code> service to check.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>timeout</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Integer</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>the maxiumum time to wait.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>started</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Integer</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>the timestamp of the first check executed.  Defaults to the current time.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>resolves when the session is running.</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="ensureStarted"><span class="type-signature"></span>ensureStarted<span class="signature">(timeout, started<span class="signature-attributes">opt</span>, failures<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="TestMachine.js.html">TestMachine.js</a>, <a href="TestMachine.js.html#line61">line 61</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Ensure that a newly created machine has started.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>timeout</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Integer</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>the maxiumum time to wait.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>started</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Integer</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>the timestamp of the first check executed.  Defaults to the current time.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>failures</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Integer</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>the number of times that an SSH connection has been tried.  Defaults to <code>0</code>.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>resolves when the machine has been started.</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="getInstances"><span class="type-signature">(abstract) </span>getInstances<span class="signature">()</span><span class="type-signature"> &rarr; {Promise.&lt;Array>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="TestMachine.js.html">TestMachine.js</a>, <a href="TestMachine.js.html#line19">line 19</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Fetches all machines that are currently running created by this testing.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>resolves to the current running machines.  Each includes
+  <code>{ id, name, zone, creationTimestamp }</code>.</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;Array></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="ssh"><span class="type-signature">(abstract) </span>ssh<span class="signature">(command)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="TestMachine.js.html">TestMachine.js</a>, <a href="TestMachine.js.html#line49">line 49</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Runs an SSH connection to the current testing machine.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>command</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>a command to execute on the remote machine.  If not provided, an interactive SSH session
+  is started.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>resolves when the SSH connection terminates.</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Tue Jun 06 2017 17:00:17 GMT+0000 (UTC) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

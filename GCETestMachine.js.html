@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>GCETestMachine.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Bypass.html">Bypass</a></li><li><a href="CloudMachineTest.html">CloudMachineTest</a><ul class='methods'><li data-type='method'><a href="CloudMachineTest.html#automatedTests">automatedTests</a></li><li data-type='method'><a href="CloudMachineTest.html#cleanup">cleanup</a></li><li data-type='method'><a href="CloudMachineTest.html#createInstance">createInstance</a></li><li data-type='method'><a href="CloudMachineTest.html#destroyInstance">destroyInstance</a></li><li data-type='method'><a href="CloudMachineTest.html#ensureCredentials">ensureCredentials</a></li><li data-type='method'><a href="CloudMachineTest.html#manualSSH">manualSSH</a></li><li data-type='method'><a href="CloudMachineTest.html#manualSteps">manualSteps</a></li><li data-type='method'><a href="CloudMachineTest.html#prepareEnvironment">prepareEnvironment</a></li><li data-type='method'><a href="CloudMachineTest.html#preventRunawayServers">preventRunawayServers</a></li><li data-type='method'><a href="CloudMachineTest.html#runTests">runTests</a></li><li data-type='method'><a href="CloudMachineTest.html#setup">setup</a></li><li data-type='method'><a href="CloudMachineTest.html#test">test</a></li></ul></li><li><a href="FormatTestOutput.html">FormatTestOutput</a><ul class='methods'><li data-type='method'><a href="FormatTestOutput.html#_it">_it</a></li><li data-type='method'><a href="FormatTestOutput.html#allowAssertion">allowAssertion</a></li><li data-type='method'><a href="FormatTestOutput.html#indent">indent</a></li><li data-type='method'><a href="FormatTestOutput.html#indentLines">indentLines</a></li><li data-type='method'><a href="FormatTestOutput.html#it">it</a></li><li data-type='method'><a href="FormatTestOutput.html#resumeBypass">resumeBypass</a></li><li data-type='method'><a href="FormatTestOutput.html#section">section</a></li><li data-type='method'><a href="FormatTestOutput.html#startBypass">startBypass</a></li></ul></li><li><a href="GCETestMachine.html">GCETestMachine</a><ul class='methods'><li data-type='method'><a href="GCETestMachine.html#createInstance">createInstance</a></li><li data-type='method'><a href="GCETestMachine.html#destroyInstance">destroyInstance</a></li><li data-type='method'><a href="GCETestMachine.html#getInstances">getInstances</a></li><li data-type='method'><a href="GCETestMachine.html#salt">salt</a></li><li data-type='method'><a href="GCETestMachine.html#ssh">ssh</a></li></ul></li><li><a href="IO.html">IO</a><ul class='methods'><li data-type='method'><a href="IO.html#bell">bell</a></li><li data-type='method'><a href="IO.html#formatYesNo">formatYesNo</a></li><li data-type='method'><a href="IO.html#status">status</a></li><li data-type='method'><a href="IO.html#yesNo">yesNo</a></li></ul></li><li><a href="TestError.html">TestError</a></li><li><a href="TestMachine.html">TestMachine</a><ul class='methods'><li data-type='method'><a href="TestMachine.html#createInstance">createInstance</a></li><li data-type='method'><a href="TestMachine.html#destroyInstance">destroyInstance</a></li><li data-type='method'><a href="TestMachine.html#ensureServiceStarted">ensureServiceStarted</a></li><li data-type='method'><a href="TestMachine.html#ensureStarted">ensureStarted</a></li><li data-type='method'><a href="TestMachine.html#getInstances">getInstances</a></li><li data-type='method'><a href="TestMachine.html#ssh">ssh</a></li></ul></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">GCETestMachine.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>const exec = require("child-process-promise").exec;
+const TestMachine = require("./TestMachine");
+
+/**
+ * Interacts with the Google Compute Engine to interact with machines to create testing environments.
+*/
+class GCETestMachine extends TestMachine {
+
+  constructor() {
+    super();
+    this.zone = "us-east1-d";
+    this.ensureStartedTimeout = 60 * 1000;
+  }
+
+  /**
+   * Creates a random alphabetical string to generate unique machine names.
+   * @return {String} a random alphabetical string.
+  */
+  salt() {
+    return Math.random().toString(36).slice(2);
+  }
+
+  /**
+   * Fetches all running Google Compute Engine machines.
+   * @return {Promise&lt;Array>} resolves to the current running machines.  Each includes
+   *   `{ id, name, zone, creationTimestamp }`.
+  */
+  getInstances() {
+    return exec(`gcloud compute instances list --regexp "${this.prefix}.*" --format='json'`)
+      .then(res => res.stdout)
+      .then(JSON.parse);
+  }
+
+  /**
+   * Creates a new Google Compute Engine machine for testing.
+   * @return {Promise} resolves when the machine has been created.
+  */
+  createInstance() {
+    this._salt = this.salt();
+    this._image = `${this.prefix}${this._salt}`;
+    return exec(`gcloud compute instances create "${this._image}" \
+      --image-family ubuntu-1604-lts \
+      --image-project ubuntu-os-cloud \
+      --preemptible \
+      --zone "${this.zone}" \
+      --machine-type n1-standard-1 \
+      --metadata production=false \
+      --metadata-from-file user-data=cloud-config.yaml`)
+      .then(() => {
+        console.log("Created machine.  Ensuring SSH connection works.");
+        return this.ensureStarted(this.ensureStartedTimeout);
+      });
+  }
+
+  /**
+   * Destroys the Google Compute Engine machine used for testing.
+   * @return {Promise} resolves when the machine has been destroyed.
+  */
+  destroyInstance() {
+    if(!this._image) { return Promise.resolve(); }
+    return exec(`gcloud compute instances delete "${this._image}" --zone "${this.zone}" -q`);
+  }
+
+  /**
+   * Runs an SSH connection to the current Coogle Compute Engine instance.
+   * @param {String} command a command to execute on the remote machine.  If not provided, an interactive SSH session
+   *   is started.
+   * @return {Promise} resolves when the SSH connection terminates.
+   * @todo Fix 'manual' SSH.
+  */
+  ssh(command) {
+    if(command) {
+      return exec(`gcloud compute ssh "${this._image}" --zone "${this.zone}" --command "${command}"`);
+    }
+    else {
+      console.log(`Run 'gcloud compute ssh "${this._image}" --zone "${this.zone}'.`);
+      const rl = require("readline").createInterface({ input: process.stdin, output: process.stdout });
+      const askQuestion = (text) => new Promise(resolve => rl.question(text, resolve));
+      return askQuestion("Press &lt;enter> to continue. ")
+        .then(() => {
+          rl.close();
+        });
+      /*const spawned = spawn(`gcloud compute ssh "${this._image}" --zone "${this.zone}"`, {
+        stdio: "pipe",
+      });
+      return spawned;*/
+    }
+  }
+
+}
+
+module.exports = GCETestMachine;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Tue Jun 06 2017 17:00:17 GMT+0000 (UTC) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

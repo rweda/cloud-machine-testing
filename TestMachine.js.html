@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>TestMachine.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Bypass.html">Bypass</a></li><li><a href="CloudMachineTest.html">CloudMachineTest</a><ul class='methods'><li data-type='method'><a href="CloudMachineTest.html#automatedTests">automatedTests</a></li><li data-type='method'><a href="CloudMachineTest.html#cleanup">cleanup</a></li><li data-type='method'><a href="CloudMachineTest.html#createInstance">createInstance</a></li><li data-type='method'><a href="CloudMachineTest.html#destroyInstance">destroyInstance</a></li><li data-type='method'><a href="CloudMachineTest.html#ensureCredentials">ensureCredentials</a></li><li data-type='method'><a href="CloudMachineTest.html#manualSSH">manualSSH</a></li><li data-type='method'><a href="CloudMachineTest.html#manualSteps">manualSteps</a></li><li data-type='method'><a href="CloudMachineTest.html#prepareEnvironment">prepareEnvironment</a></li><li data-type='method'><a href="CloudMachineTest.html#preventRunawayServers">preventRunawayServers</a></li><li data-type='method'><a href="CloudMachineTest.html#runTests">runTests</a></li><li data-type='method'><a href="CloudMachineTest.html#setup">setup</a></li><li data-type='method'><a href="CloudMachineTest.html#test">test</a></li></ul></li><li><a href="FormatTestOutput.html">FormatTestOutput</a><ul class='methods'><li data-type='method'><a href="FormatTestOutput.html#_it">_it</a></li><li data-type='method'><a href="FormatTestOutput.html#allowAssertion">allowAssertion</a></li><li data-type='method'><a href="FormatTestOutput.html#indent">indent</a></li><li data-type='method'><a href="FormatTestOutput.html#indentLines">indentLines</a></li><li data-type='method'><a href="FormatTestOutput.html#it">it</a></li><li data-type='method'><a href="FormatTestOutput.html#resumeBypass">resumeBypass</a></li><li data-type='method'><a href="FormatTestOutput.html#section">section</a></li><li data-type='method'><a href="FormatTestOutput.html#startBypass">startBypass</a></li></ul></li><li><a href="GCETestMachine.html">GCETestMachine</a><ul class='methods'><li data-type='method'><a href="GCETestMachine.html#createInstance">createInstance</a></li><li data-type='method'><a href="GCETestMachine.html#destroyInstance">destroyInstance</a></li><li data-type='method'><a href="GCETestMachine.html#getInstances">getInstances</a></li><li data-type='method'><a href="GCETestMachine.html#salt">salt</a></li><li data-type='method'><a href="GCETestMachine.html#ssh">ssh</a></li></ul></li><li><a href="IO.html">IO</a><ul class='methods'><li data-type='method'><a href="IO.html#bell">bell</a></li><li data-type='method'><a href="IO.html#formatYesNo">formatYesNo</a></li><li data-type='method'><a href="IO.html#status">status</a></li><li data-type='method'><a href="IO.html#yesNo">yesNo</a></li></ul></li><li><a href="TestError.html">TestError</a></li><li><a href="TestMachine.html">TestMachine</a><ul class='methods'><li data-type='method'><a href="TestMachine.html#createInstance">createInstance</a></li><li data-type='method'><a href="TestMachine.html#destroyInstance">destroyInstance</a></li><li data-type='method'><a href="TestMachine.html#ensureServiceStarted">ensureServiceStarted</a></li><li data-type='method'><a href="TestMachine.html#ensureStarted">ensureStarted</a></li><li data-type='method'><a href="TestMachine.html#getInstances">getInstances</a></li><li data-type='method'><a href="TestMachine.html#ssh">ssh</a></li></ul></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">TestMachine.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>const sleep = require("promise.delay");
+const TestError = require("./TestError");
+
+/**
+ * Abstract class that creates machines, runs tests on created machines, then destroys the machines.
+*/
+class TestMachine {
+
+  constructor() {
+    this.prefix = "test-";
+  }
+
+  /**
+   * Fetches all machines that are currently running created by this testing.
+   * @return {Promise&lt;Array>} resolves to the current running machines.  Each includes
+   *   `{ id, name, zone, creationTimestamp }`.
+   * @abstract
+  */
+  getInstances() {
+    return Promise.resolve([]);
+  }
+
+  /**
+   * Creates a new machine for testing.
+   * @return {Promise} resolves when the machine has been created.
+   * @abstract
+  */
+  createInstance() {
+    return Promise.reject(new Error("Abstract TestMachine#createInstance not implemented."));
+  }
+
+  /**
+   * Destroys the machine used for testing.
+   * @return {Promise} resolves when the machine has been destroyed.
+   * @abstract
+  */
+  destroyInstance() {
+    return Promise.reject(new Error("Abstract TestMachine#destroyInstance not implemented."));
+  }
+
+  /*eslint-disable no-unused-vars*/
+  /**
+   * Runs an SSH connection to the current testing machine.
+   * @param {String} command a command to execute on the remote machine.  If not provided, an interactive SSH session
+   *   is started.
+   * @return {Promise} resolves when the SSH connection terminates.
+   * @abstract
+  */
+  ssh(command) {
+    return Promise.reject(new Error("Abstract TestMachine#destroyInstance not implemented."));
+  }
+  /*eslint-enable no-unused-vars*/
+
+  /**
+   * Ensure that a newly created machine has started.
+   * @param {Integer} timeout the maxiumum time to wait.
+   * @param {Integer} [started] the timestamp of the first check executed.  Defaults to the current time.
+   * @param {Integer} [failures] the number of times that an SSH connection has been tried.  Defaults to `0`.
+   * @return {Promise} resolves when the machine has been started.
+  */
+  ensureStarted(timeout, started, failures) {
+    if(!started) { started = new Date(); }
+    if(!failures) { failures = 0; }
+    if(new Date() - started > timeout) {
+      throw new TestError(`Machine has not responded to SSH in ${timeout}ms (Attempted ${failures} connections)`);
+    }
+    return this
+      .ssh("echo 'Test'")
+      .then(() => console.log(`Machine responded to SSH connections in ${new Date() - started}ms`))
+      .catch(() => sleep(100).then(() => this.ensureStarted(timeout, started, ++failures)));
+  }
+
+  /**
+   * Ensure that a `systemd` service is running.
+   * @param {String} service the name of the `systemd` service to check.
+   * @param {Integer} timeout the maxiumum time to wait.
+   * @param {Integer} [started] the timestamp of the first check executed.  Defaults to the current time.
+   * @return {Promise} resolves when the session is running.
+  */
+  ensureServiceStarted(service, timeout, started) {
+    if(!started) { started = new Date(); }
+    if(new Date() - started > timeout) {
+      throw new TestError(`Service ${service} has not started after ${timeout}ms.`);
+    }
+    return this
+      .ssh(`systemctl is-active ${service}`)
+      .catch(() => sleep(100).then(() => this.ensureServiceStarted(service, timeout, started)));
+  }
+
+}
+
+module.exports = TestMachine;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Tue Jun 06 2017 17:00:17 GMT+0000 (UTC) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>
