@@ -6,7 +6,7 @@ branches:
   - gh-pages
 
 script:
-- npm test
+- npm run-script lint
 - npm run-script docs
 - $(npm bin)/gh-pages-travis
 
