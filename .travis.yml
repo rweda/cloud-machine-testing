@@ -8,7 +8,7 @@ branches:
 script:
 - npm test
 - npm run-script docs
-- '"$(npm bin)/gh-pages-travis"'
+- $(npm bin)/gh-pages-travis
 
 env:
   global:
