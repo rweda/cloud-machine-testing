@@ -26,6 +26,7 @@
     "@codelenny/eslint-rules": "^0.1.0",
     "docdash": "^0.4.0",
     "eslint": "^3.19.0",
+    "gh-pages-travis": "^1.0.4",
     "jsdoc": "^3.4.3"
   }
 }
