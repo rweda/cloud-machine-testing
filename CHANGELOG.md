@@ -6,6 +6,7 @@
 
 - [`TestMachine`][] takes `sshUser` option
   - Implemented in [`GCETestMachine#ssh`][]
+- Moved SSH timeout logic from [`GCETestMachine#ssh`][] to [`TestMachine#ensureStarted`][]
 
 ## [0.1.1] - 2017-06-08
 
@@ -17,4 +18,5 @@
 
 [`TestMachineOptions`]: https://rweda.github.io/cloud-machine-testing/global.html#TestMachineOptions
 [`TestMachine`]: https://rweda.github.io/cloud-machine-testing/TestMachine.html
+[`TestMachine#ensureStarted`]: https://rweda.github.io/cloud-machine-testing/TestMachine.html#ensureStarted
 [`GCETestMachine#ssh`]: https://rweda.github.io/cloud-machine-testing/GCETestMachine.html#ssh

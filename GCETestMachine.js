@@ -1,4 +1,3 @@
-const {timeout} = require("promise-timeout");
 const exec = require("child-process-promise").exec;
 const TestMachine = require("./TestMachine");
 
@@ -79,8 +78,7 @@ class GCETestMachine extends TestMachine {
       machine = `${this.opts.sshUser}@${machine}`;
     }
     if(command) {
-      const connection = exec(`gcloud compute ssh "${machine}" --zone "${this.zone}" --command "${command}"`);
-      return timeout(connection, this.opts.sshTimeout);
+      return exec(`gcloud compute ssh "${machine}" --zone "${this.zone}" --command "${command}"`);
     }
     else {
       console.log(`Run 'gcloud compute ssh "${machine}" --zone "${this.zone}'.`);

@@ -1,4 +1,5 @@
 const merge = require("lodash.merge");
+const timeout = require("timeout");
 const sleep = require("promise.delay");
 const TestError = require("./TestError");
 
@@ -81,8 +82,7 @@ class TestMachine {
     if(new Date() - started > timeout) {
       throw new TestError(`Machine has not responded to SSH in ${timeout}ms (Attempted ${failures} connections)`);
     }
-    return this
-      .ssh("echo 'Test'")
+    return timeout(this.ssh("echo 'Test'"), this.opts.sshTimeout)
       .then(() => console.log(`Machine responded to SSH connections in ${new Date() - started}ms`))
       .catch(() => sleep(100).then(() => this.ensureStarted(timeout, started, ++failures)));
   }
