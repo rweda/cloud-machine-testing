@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [0.1.1] - 2017-06-08
+
 ### Added
 
 - `TestMachine` takes configurable options ([`TestMachineOptions`][])
