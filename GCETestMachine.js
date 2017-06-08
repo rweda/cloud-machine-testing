@@ -78,7 +78,7 @@ class GCETestMachine extends TestMachine {
       machine = `${this.opts.sshUser}@${machine}`;
     }
     if(command) {
-      return exec(`gcloud compute ssh "${machine}" --zone "${this.zone}" --command "${command}"`);
+      return exec(`gcloud compute ssh "${machine}" --quiet --zone "${this.zone}" --command "${command}"`);
     }
     else {
       console.log(`Run 'gcloud compute ssh "${machine}" --zone "${this.zone}'.`);

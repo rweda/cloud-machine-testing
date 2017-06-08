@@ -7,6 +7,9 @@
 - [`TestMachine`][] takes `sshUser` option
   - Implemented in [`GCETestMachine#ssh`][]
 - Moved SSH timeout logic from [`GCETestMachine#ssh`][] to [`TestMachine#ensureStarted`][]
+- Added `--quiet` flag to [`GCETestMachine#ssh`][] as
+  [suggested](https://cloud.google.com/sdk/gcloud/reference/compute/ssh#DESCRIPTION)
+  in the `gcloud` docs.
 
 ## [0.1.1] - 2017-06-08
 
