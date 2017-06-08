@@ -7,6 +7,8 @@ const TestError = require("./TestError");
  * @property {String} prefix inserted before the name of generated machines.  Defaults to `test-`.
  * @property {Number} sshTimeout the duration to wait for new SSH connections to complete, in milliseconds.
  *   Defaults to 2 minutes.
+ * @property {null|String} sshUser if provided, specifies a remote user to connect to.  If in CI, defaults to `ci`.
+ *   otherwise not provided (and uses a default).
 */
 
 /**
@@ -21,6 +23,7 @@ class TestMachine {
     this.opts = merge({}, {
       prefix: "test-",
       sshTimeout: 2 * 60 * 1000,
+      sshUser: process.env.CI ? "ci" : undefined,
     }, opts);
   }
 

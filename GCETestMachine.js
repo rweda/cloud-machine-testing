@@ -74,12 +74,16 @@ class GCETestMachine extends TestMachine {
    * @todo Fix 'manual' SSH.
   */
   ssh(command) {
+    let machine = this._image;
+    if(this.opts.sshUser) {
+      machine = `${this.opts.sshUser}@${machine}`;
+    }
     if(command) {
-      const connection = exec(`gcloud compute ssh "${this._image}" --zone "${this.zone}" --command "${command}"`);
+      const connection = exec(`gcloud compute ssh "${machine}" --zone "${this.zone}" --command "${command}"`);
       return timeout(connection, this.opts.sshTimeout);
     }
     else {
-      console.log(`Run 'gcloud compute ssh "${this._image}" --zone "${this.zone}'.`);
+      console.log(`Run 'gcloud compute ssh "${machine}" --zone "${this.zone}'.`);
       const rl = require("readline").createInterface({ input: process.stdin, output: process.stdout });
       const askQuestion = (text) => new Promise(resolve => rl.question(text, resolve));
       return askQuestion("Press <enter> to continue. ")

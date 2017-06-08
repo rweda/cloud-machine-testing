@@ -2,6 +2,11 @@
 
 ## [Unreleased]
 
+### Added
+
+- [`TestMachine`][] takes `sshUser` option
+  - Implemented in [`GCETestMachine#ssh`][]
+
 ## [0.1.1] - 2017-06-08
 
 ### Added
