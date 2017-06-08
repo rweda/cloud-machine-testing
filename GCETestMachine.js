@@ -1,3 +1,4 @@
+const {timeout} = require("promise-timeout");
 const exec = require("child-process-promise").exec;
 const TestMachine = require("./TestMachine");
 
@@ -6,8 +7,11 @@ const TestMachine = require("./TestMachine");
 */
 class GCETestMachine extends TestMachine {
 
-  constructor() {
-    super();
+  /**
+   * @param {TestMachineOptions} opts options to configure the test machine.
+  */
+  constructor(opts) {
+    super(opts);
     this.zone = "us-east1-d";
     this.ensureStartedTimeout = 60 * 1000;
   }
@@ -26,7 +30,7 @@ class GCETestMachine extends TestMachine {
    *   `{ id, name, zone, creationTimestamp }`.
   */
   getInstances() {
-    return exec(`gcloud compute instances list --regexp "${this.prefix}.*" --format='json'`)
+    return exec(`gcloud compute instances list --regexp "${this.opts.prefix}.*" --format='json'`)
       .then(res => res.stdout)
       .then(JSON.parse);
   }
@@ -37,7 +41,7 @@ class GCETestMachine extends TestMachine {
   */
   createInstance() {
     this._salt = this.salt();
-    this._image = `${this.prefix}${this._salt}`;
+    this._image = `${this.opts.prefix}${this._salt}`;
     return exec(`gcloud compute instances create "${this._image}" \
       --image-family ubuntu-1604-lts \
       --image-project ubuntu-os-cloud \
@@ -66,11 +70,13 @@ class GCETestMachine extends TestMachine {
    * @param {String} command a command to execute on the remote machine.  If not provided, an interactive SSH session
    *   is started.
    * @return {Promise} resolves when the SSH connection terminates.
+   * @throws {TimeoutError} if the SSH command doesn't return within the set timeout.
    * @todo Fix 'manual' SSH.
   */
   ssh(command) {
     if(command) {
-      return exec(`gcloud compute ssh "${this._image}" --zone "${this.zone}" --command "${command}"`);
+      const connection = exec(`gcloud compute ssh "${this._image}" --zone "${this.zone}" --command "${command}"`);
+      return timeout(connection, this.opts.sshTimeout);
     }
     else {
       console.log(`Run 'gcloud compute ssh "${this._image}" --zone "${this.zone}'.`);

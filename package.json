@@ -20,6 +20,8 @@
   "homepage": "https://github.com/rweda/cloud-machine-testing#readme",
   "dependencies": {
     "child-process-promise": "^2.2.1",
+    "lodash.merge": "^4.6.0",
+    "promise-timeout": "^1.1.1",
     "promise.delay": "0.0.1"
   },
   "devDependencies": {

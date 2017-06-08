@@ -1,13 +1,27 @@
+const merge = reuqire("lodash.merge");
 const sleep = require("promise.delay");
 const TestError = require("./TestError");
+
+/**
+ * @typedef {Object} TestMachineOptions
+ * @property {String} prefix inserted before the name of generated machines.  Defaults to `test-`.
+ * @property {Number} sshTimeout the duration to wait for new SSH connections to complete, in milliseconds.
+ *   Defaults to 2 minutes.
+*/
 
 /**
  * Abstract class that creates machines, runs tests on created machines, then destroys the machines.
 */
 class TestMachine {
 
-  constructor() {
-    this.prefix = "test-";
+  /**
+   * @param {TestMachineOptions} opts options to configure the test machine.
+  */
+  constructor(opts) {
+    this.opts = merge({}, {
+      prefix: "test-",
+      sshTimeout: 2 * 60 * 1000,
+    }, opts);
   }
 
   /**
