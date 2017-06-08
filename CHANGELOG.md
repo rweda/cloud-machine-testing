@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [0.1.2] - 2017-06-08
+
 ### Added
 
 - [`TestMachine`][] takes `sshUser` option
