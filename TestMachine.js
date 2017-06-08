@@ -1,4 +1,4 @@
-const merge = reuqire("lodash.merge");
+const merge = require("lodash.merge");
 const sleep = require("promise.delay");
 const TestError = require("./TestError");
 
