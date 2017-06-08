@@ -1,6 +1,6 @@
 {
   "name": "@rweda/cloud-machine-testing",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Generic infrastructure for testing scripted configuration for cloud machines.",
   "main": "CloudMachineTest.js",
   "scripts": {
