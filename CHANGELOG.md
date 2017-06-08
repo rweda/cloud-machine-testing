@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [0.1.3] - 2017-06-08
+
 ### Fixed
 
 - Change `require("timeout")` to `require("promise-timeout")`.
