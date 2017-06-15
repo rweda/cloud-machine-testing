@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [0.1.4] - 2017-06-15
+
 ### Fixed
 
 - `require` of `promise-timeout`.
