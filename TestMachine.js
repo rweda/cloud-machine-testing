@@ -1,5 +1,5 @@
 const merge = require("lodash.merge");
-const promiseTimeout = require("promise-timeout");
+const promiseTimeout = require("promise-timeout").timeout;
 const sleep = require("promise.delay");
 const TestError = require("./TestError");
 
